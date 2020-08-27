@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-lg-3">
+    <%= form_with url: randomizer_index_path, method: :post, remote: true, id: "myform" do |f| %>
+     <%= f.hidden_field :league_ids, id: 'league_ids_field'%>
+    <% end %>
+
+    <ul class="list-group">
+      <% League.all.select(:id, :name).each do |league| %>
+        <%= tag.li class: "list-group-item", onclick: "handle_event(event);", data: { league_id: league.id } do %>
+          <%= league.name %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+
+
+  <div class="col-lg-9">
+    <%= tag.button onclick: "handle_submit()" do %>
+       Click to randomize
+    <% end %>
+    <div class="" id="result">
+
+    </div>
+  </div>
+</div>
+
+
+
+<%= javascript_tag do %>
+  function handle_event(event) {
+    var target = event.target;
+    target.classList.toggle('active');
+  }
+
+  function handle_submit() {
+    var elements = $(".active").toArray().map(x => x.dataset.leagueId);
+    if (elements.length == 0) {
+      window.alert("Brah select something pls");
+      return
+    }
+    document.getElementById("league_ids_field").value = elements
+    form = document.querySelector('#myform');
+    Rails.fire(form, 'submit');
+  }
+<% end %>
