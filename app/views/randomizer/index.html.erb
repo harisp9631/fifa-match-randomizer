@@ -30,16 +30,18 @@
       </div>
     </div>
     <div class="row">
-      <div class='col text-center ' style="position:relative">
+      <div class='col text-center' style="position:relative">
         <h3 class="press-the-button"> Press the big ass red button </h3>
       </div>
     </div>
   </div>
 
+
   <div class="col-lg-3">
     <%= form_with url: randomizer_index_path, method: :post, remote: true, id: "myform" do |f| %>
      <%= f.hidden_field :league_ids, id: 'league_ids_field'%>
     <% end %>
+
 
     <ul class="list-group">
       <% League.all.select(:id, :name).each do |league| %>
@@ -52,6 +54,19 @@
 </div>
 
   <div class="row">
+    <div class="col-lg-6">
+      <%= form_with url: randomizer_index_path, method: :post, remote: true, id: "myform2" do |f| %>
+       <%= f.hidden_field :league_ids, id: 'league_ids_field', value: '4,9,11,19'%>
+       <%= f.submit '4 VELIKE LIGE' %>
+      <% end %>
+    </div>
+    <div class="col-lg-6">
+      <%= @random_leagues.pluck(:name).join(" ,") %>
+      <%= form_with url: randomizer_index_path, method: :post, remote: true, id: "myform3" do |f| %>
+       <%= f.hidden_field :league_ids, id: 'league_ids_field', value: @random_leagues.pluck(:id).join(',') %>
+       <%= f.submit '3 RANDOM LIGE' %>
+      <% end %>
+    </div>
 
   </div>
 

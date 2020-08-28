@@ -1,6 +1,6 @@
 class RandomizerController < ApplicationController
   def index
-
+    @random_leagues = League.where.not(id: [4,9,11,19]).order(Arel.sql('RANDOM()')).limit(3))
   end
 
   def create
