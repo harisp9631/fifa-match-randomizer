@@ -1,4 +1,41 @@
-<div class="row">
+<div class="row p-3 m-3">
+  <div class="col-lg-9">
+    <div class="row">
+      <div class="col">
+        <div class="" id="result">
+          <div class="row p-4 match">
+            <div class="col match-club">
+              <div class="match-summary pb-3">
+                <%= image_tag 'kreko', class: "image-player" %>
+              </div>
+              <h3 class="match-summary club-name"> Club 1 </h3>
+              <p class="match-summary club-league-name"> League </p>
+            </div>
+
+             <div class="col match-club">
+               <div class="match-summary pb-3">
+                 <%= image_tag 'pendzo', class: 'image-player' %>
+               </div>
+               <h3 class="match-summary club-name"> Club 1 </h3>
+               <p class="match-summary club-league-name"> League </p>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class='col button-box' style="position:relative">
+        <%= tag.button class: "big-red-button", onclick: "handle_submit()" do %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class='col text-center ' style="position:relative">
+        <h3 class="press-the-button"> Press the big ass red button </h3>
+      </div>
+    </div>
+  </div>
+
   <div class="col-lg-3">
     <%= form_with url: randomizer_index_path, method: :post, remote: true, id: "myform" do |f| %>
      <%= f.hidden_field :league_ids, id: 'league_ids_field'%>
@@ -6,24 +43,17 @@
 
     <ul class="list-group">
       <% League.all.select(:id, :name).each do |league| %>
-        <%= tag.li class: "list-group-item", onclick: "handle_event(event);", data: { league_id: league.id } do %>
+        <%= tag.li class: "list-group-item team-option", onclick: "handle_event(event);", data: { league_id: league.id } do %>
           <%= league.name %>
         <% end %>
       <% end %>
     </ul>
   </div>
-
-
-
-  <div class="col-lg-9">
-    <%= tag.button onclick: "handle_submit()" do %>
-       Click to randomize
-    <% end %>
-    <div class="" id="result">
-
-    </div>
-  </div>
 </div>
+
+  <div class="row">
+
+  </div>
 
 
 
