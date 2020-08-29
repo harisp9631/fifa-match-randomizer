@@ -63,7 +63,7 @@
     <div class="col-lg-6">
       <%= @random_leagues.pluck(:name).join(" ,") %>
       <%= form_with url: randomizer_index_path, method: :post, remote: true, id: "myform3" do |f| %>
-       <%= f.hidden_field :league_ids, id: 'league_ids_field', value: @random_leagues.pluck(:id).join(',') %>
+       <%= f.hidden_field :league_ids, id: 'league_ids_field', value: @random_leagues.map { |rl| rl.id }.join(",") %>
        <%= f.submit '3 RANDOM LIGE' %>
       <% end %>
     </div>
