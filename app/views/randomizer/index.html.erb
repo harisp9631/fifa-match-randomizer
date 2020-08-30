@@ -99,14 +99,16 @@
     <div class="" id="all_results"></div>
     <table class='table table-light'>
       <tr>
+        <th> Num of game </th>
         <th> Home Team </th>
         <th> Away Team </th>
         <th> Home Score </th>
         <th> Away Score </th>
         <th> Date Logged </th>
       </tr>
-      <% @matches.each do |m| %>
+      <% @matches.each_with_index do |m, index| %>
         <%= content_tag :tr, class: resolve_class(m) do %>
+          <td>  <%= index+1 %></td>
           <td>  <%= m.home_club.name %> </td>
           <td>  <%= m.away_club.name %> </td>
           <td>  <%= m.home_result %> </td>
