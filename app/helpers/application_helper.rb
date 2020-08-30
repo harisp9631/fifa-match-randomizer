@@ -5,7 +5,7 @@ module ApplicationHelper
      'yellow'
    when 'home'
      'blue'
-   when 'red'
+   when 'away'
      'red'
    end
  end
