@@ -14,6 +14,7 @@
   <tbody>
     <% @clubs.each do |club| %>
       <tr>
+        <td><%= club.id %></td>
         <td><%= club.name %></td>
         <td><%= club.league.name %></td>
         <td><%= link_to 'Show', club %></td>
