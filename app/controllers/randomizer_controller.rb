@@ -1,6 +1,6 @@
 class RandomizerController < ApplicationController
   def index
-    @matches = Match.all.order(created_at: :desc)
+    @matches = Match.all.order(created_at: :asc)
     @kreko_won = @matches.where('home_result > away_result').count
     @pendzo_won = @matches.where('away_result > home_result').count
     @random_leagues = League.get_samples_without_four_big_leagues(3)
