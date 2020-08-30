@@ -1,0 +1,10 @@
+<%= form_with url: randomizer_index_path, method: :post, remote: true do |f| %>
+       <%= f.hidden_field :league_ids, id: 'league_ids_field', value: random_leagues.pluck(:id).join(',') %>
+       <%= f.hidden_field :random_type, value: 'random_leagues' %>
+       <%= f.submit 'Generate random from 4 random leagues', class: 'btn btn-success' %>
+      <% end %>
+      <p class='mt-1'> Current Random Leagues are <%= random_leagues.pluck(:name).join(',') %>
+        <%= link_to root_url, remote: true do %>
+          &#8635;
+        <% end %>
+      </p>

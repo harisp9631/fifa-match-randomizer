@@ -15,10 +15,25 @@
  */
  @import 'bootstrap/scss/bootstrap';
 
+ .yellow {
+   color: white;
+   background-color: #FFCC00;
+ }
+
+ .blue {
+   color: white;
+   background-color: #2B60DE;
+ }
+
+ .red {
+   color: white;
+   background-color: #8C0000;
+ }
+
  .image-player {
    height: 300px;
    width: 200px;
-   box-shadow: 0 0 8px 8px #DCDCDC inset;
+   box-shadow: 0 0 8px 8px #fdfdfe inset;
  }
 
  .press-the-button {
@@ -28,12 +43,16 @@
 
  }
 
+ .small-font {
+   font-size: 0.5em;
+ }
+
  body {
    background-color: #2F3244;
  }
 
  .team-option {
-   background-color: #DCDCDC;
+   background-color: #fdfdfe;
  }
 
  .match {
@@ -41,7 +60,7 @@
   -moz-box-shadow: 7px 6px 12px -8px rgba(0,0,0,0.93);
   box-shadow: 7px 6px 12px -8px rgba(0,0,0,0.93);
   border-radius: 15px;
-  background-color: #DCDCDC;
+  background-color: #fdfdfe;
   color: #2F3244;
  }
 
@@ -70,56 +89,4 @@
 .center-vertically {
   display: flex;
   align-items: center;
-}
-
-
-$button-height: 40px;
-$button-width: 240px;
-$press-time: .4s;
-
-.button-box {
-  min-height: $button-height * 5;
-}
-
-.big-red-button{
-  box-shadow: 0px 15px 0 20px #352d2d, 0px 40px 0 30px #000000;
-	cursor: pointer;
-	background-color: #c0392b;
-	position: absolute;
-	border-radius: 50%;
-	top: 40%;
-	left: 50%;
-	width: $button-width;
-	height: $button-height;
-	transform: translateX(-50%);
-
-	&::before{
-		content: '';
-		z-index: 1;
-		border-radius: 50%;
-		background-color: #e74c3c;
-		position: absolute;
-		bottom: 100%;
-		left: 0%;
-		transition: bottom $press-time;
-		width: $button-width;
-		height: $button-height;
-	}
-
-	&::after{
-		content: '';
-		background-color: #c0392b;
-		position: absolute;
-		bottom: 50%;
-		left: 0%;
-		width: $button-width;
-		height: $button-height;
-		transition: height $press-time;
-	}
-
-	&:active{
-		&::before{ bottom: 10%; }
-		&::after{ height: 10%; }
-	}
-
 }

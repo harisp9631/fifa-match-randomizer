@@ -1,0 +1,21 @@
+
+<%= form_with model: @match, class: "form" do |f| %>
+  <table class='table table-light'>
+    <tr>
+      <th> Home Team </th>
+      <th> Away Team </th>
+      <th> Home Score </th>
+      <th> Away Score </th>
+    </tr>
+    <tr>
+      <td> <h3><%= @match.home_club.name %>
+      <%= f.hidden_field :home_club_id, value: @match.home_club.id %>
+    </h3> </td>
+      <td> <h3><%= @match.away_club.name %>
+      <%= f.hidden_field :away_club_id, value: @match.away_club.id %> </h3></td>
+      <td> <%= f.text_field :home_result, class: 'form-control', value: 0 %> </td>
+      <td> <%= f.text_field :away_result, class: 'form-control', value: 0%> </td>
+      <td>   <%= f.submit "Log match" %> </td>
+    </tr>
+  </table>
+<% end %>

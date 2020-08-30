@@ -3,14 +3,14 @@
       <div class="match-summary pb-3">
         <%= image_tag 'kreko.png', class: "image-player" %>
       </div>
-      <h3 class="match-summary club-name"> <%= match.home.name %> </h3>
-      <p class="match-summary club-league-name"> <%= match.home.league.name %> </p>
+      <h3 class="match-summary club-name"> <%= match.home_club.name %> </h3>
+      <p class="match-summary club-league-name"> <%= match.home_club.league.name %> </p>
     </div>
      <div class="col match-club">
        <div class="match-summary pb-3">
          <%= image_tag 'pendzo.jpg', class: "image-player" %>
        </div>
-       <h3 class="match-summary club-name"> <%= match.away.name %> </h3>
-       <p class="match-summary club-league-name"> <%= match.away.league.name %> </p>
+       <h3 class="match-summary club-name"> <%= match.away_club.name %> </h3>
+       <p class="match-summary club-league-name"> <%= match.away_club.league.name %> </p>
      </div>
   </div>

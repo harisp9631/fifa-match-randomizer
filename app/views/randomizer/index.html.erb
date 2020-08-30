@@ -1,5 +1,5 @@
 <div class="row p-3 m-3">
-  <div class="col-lg-9">
+  <div class="col-lg-12 m-1">
     <div class="row">
       <div class="col">
         <div class="" id="result">
@@ -23,7 +23,28 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row p-4 mt-4 match">
+      <!-- <div class="col">
+        <%= tag.button class: "btn btn-success", onclick: "handle_submit()" do %>
+          Generate random from selected leagues
+        <% end %>
+      </div> -->
+      <div class="col text-center">
+        <%= form_with url: randomizer_index_path, method: :post, remote: true do |f| %>
+         <%= f.hidden_field :random_type, value: 'four_big_clubs' %>
+         <%= f.submit 'Generate random from 4 big leagues', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+      <div class="col text-center" id="random-leagues-selector" >
+        <%= form_with url: randomizer_index_path, method: :post, remote: true do |f| %>
+         <%= f.hidden_field :league_ids, id: 'league_ids_field', value: @random_leagues.pluck(:id).join(',') %>
+         <%= f.hidden_field :random_type, value: 'random_leagues' %>
+         <%= f.submit 'Generate random from 4 random leagues', class: 'btn btn-success' %>
+        <% end %>
+        <p class='mt-1'> Current Random Leagues are <%= @random_leagues.pluck(:name).join(',') %> </p>
+      </div>
+    </div>
+    <!-- <div class="row">
       <div class='col button-box' style="position:relative">
         <%= tag.button class: "big-red-button", onclick: "handle_submit()" do %>
         <% end %>
@@ -33,11 +54,11 @@
       <div class='col text-center' style="position:relative">
         <h3 class="press-the-button"> Press the big ass red button </h3>
       </div>
-    </div>
+    </div> -->
   </div>
 
 
-  <div class="col-lg-3">
+  <!-- <div class="col-lg-3 m-1">
     <%= form_with url: randomizer_index_path, method: :post, remote: true, id: "myform" do |f| %>
      <%= f.hidden_field :league_ids, id: 'league_ids_field'%>
     <% end %>
@@ -50,26 +71,51 @@
         <% end %>
       <% end %>
     </ul>
+  </div> -->
+
+</div>
+
+<div class="row p-3 m-3">
+  <div class="col">
+    <div class="" id="dynamic-match-logger"></div>
+
+
   </div>
 </div>
 
-  <div class="row">
-    <div class="col-lg-6">
-      <%= form_with url: randomizer_index_path, method: :post, remote: true, id: "myform2" do |f| %>
-       <%= f.hidden_field :league_ids, id: 'league_ids_field', value: '4,8,10,15'%>
-       <%= f.submit '4 VELIKE LIGE' %>
-      <% end %>
-    </div>
-    <div class="col-lg-6">
-      <%= @random_leagues.pluck(:name).join(" ,") %>
-      <%= form_with url: randomizer_index_path, method: :post, remote: true, id: "myform3" do |f| %>
-       <%= f.hidden_field :league_ids, id: 'league_ids_field', value: @random_leagues.map { |rl| rl.id }.join(",") %>
-       <%= f.submit '3 RANDOM LIGE' %>
-      <% end %>
-    </div>
+<div class="row p-3 m-3">
+  <div class="col">
+    <div class="card">
+      <div class="card-body text-center">
 
+        <h1> KREKO <span class="small-text"> <%= " #{@kreko_won} : #{@pendzo_won} " %></span> PENDZO </h1>
+      </div>
+    </div>
   </div>
+</div>
 
+<div class="row p-3 m-3">
+  <div class="col">
+    <div class="" id="all_results"></div>
+    <table class='table table-light'>
+      <tr>
+        <th> Home Team </th>
+        <th> Away Team </th>
+        <th> Home Score </th>
+        <th> Away Score </th>
+        <th> Date Logged </th>
+      </tr>
+      <% @matches.each do |m| %>
+        <%= content_tag :tr, class: resolve_class(m) do %>
+          <td>  <%= m.home_club.name %> </td>
+          <td>  <%= m.away_club.name %> </td>
+          <td>  <%= m.home_result %> </td>
+          <td>  <%= m.away_result %></td>
+          <td>  <%= m.created_at.in_time_zone('Europe/Sarajevo').strftime("%d/%m/%y %H:%M") %></td>
+        <% end %>
+      <% end %>
+  </div>
+</div>
 
 
 <%= javascript_tag do %>

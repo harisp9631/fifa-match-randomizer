@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   root 'randomizer#index'
 
   resources :randomizer, only: [:index, :create]
+  resources :matches, only: [:create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
